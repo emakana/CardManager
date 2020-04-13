@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Login</title>
+</h:head>
+<h:body>
+	<ui:composition template="templates/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="form" styleClass="todo">
+			<p:dataTable var="card" value="#{dtLazyView.lazyCardModel}"
+				paginator="true" rows="10"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15" selectionMode="single"
+				selection="#{dtLazyView.selectedCard}" id="cardTable"
+				styleClass="todo" headerClass="todoheader" lazy="true">
+				<p:ajax event="rowSelect" listener="#{dtLazyView.onRowSelect}"
+					update=":form:cardDetail" oncomplete="PF('cardDialog').show()" />
+				<p:column headerText="Number" sortBy="#{card.cardNumber}"
+					filterBy="#{card.cardNumber}">
+					<h:outputText value="#{card.cardNumber}" />
+				</p:column>
+				<p:column headerText="Status" sortBy="#{card.status}"
+					filterBy="#{card.status}">
+					<h:outputText value="#{card.status}" />
+				</p:column>
+				<p:column headerText="PrimSecIndicator"
+					sortBy="#{card.primarySecondaryIndicator}"
+					filterBy="#{card.primarySecondaryIndicator}">
+					<h:outputText value="#{card.primarySecondaryIndicator}" />
+				</p:column>
+				<p:column headerText="ExpiryDate" sortBy="#{card.expiryDate}"
+					filterBy="#{card.expiryDate}">
+					<h:outputText value="#{card.expiryDate}" />
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog header="Card Detail" widgetVar="cardDialog" modal="true"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:outputPanel id="cardDetail" style="text-align:center;">
+					<p:panelGrid columns="2"
+						rendered="#{not empty dtLazyView.selectedCard}"
+						columnClasses="label,value">
+
+						<h:outputText value="Card Number:" />
+						<h:outputText value="#{dtLazyView.selectedCard.cardNumber}" />
+
+						<h:outputText value="Status" />
+						<h:outputText value="#{dtLazyView.selectedCard.status}" />
+
+						<h:outputText value="Primary or Secondary:" />
+						<h:outputText
+							value="#{dtLazyView.selectedCard.primarySecondaryIndicator}" />
+
+						<h:outputText value="Expiry Date:" />
+						<h:outputText value="#{dtLazyView.selectedCard.expiryDate}" />
+
+					</p:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
+	</ui:define>
+	</ui:composition>
+</h:body>
+</html>
+

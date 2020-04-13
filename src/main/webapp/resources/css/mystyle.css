@@ -1,0 +1,61 @@
+table.todo  {
+    border: 1px solid #CCCCCC;
+    }
+
+table.todo th {
+    background: #EFEFEF none repeat scroll 0 0;
+    border-top: 1px solid #CCCCCC;
+    font-size: small;
+    padding-left: 5px;
+    padding-right: 4px;
+    padding-top: 4px;
+    vertical-align: top;
+}
+
+table td:first-child {
+    font-weight:bold;
+    }
+
+table .first {
+    width: 120px;
+    }
+
+table .rest {
+    width: 400px;
+    }
+
+table.todo {
+
+    border-top: 1px solid #CCCCCC;
+    font-size: small;
+    padding-left: 5px;
+    padding-right: 4px;
+    padding-top: 4px;
+    vertical-align: top;
+}
+
+#page{
+	width: 800px;
+	margin: 0 auto;
+}
+
+#header{
+	width: 100%;
+	height:100px;
+	border: 1px solid #000;
+	margin-bottom:16px;
+}
+
+#content{
+	width: 100%;
+	height:200px;
+	margin-right:16px;
+	margin-bottom:16px;
+	border: 1px solid #000;
+}
+
+#footer{
+	width: 100%;
+	height:100px;
+	border: 1px solid #000;
+}

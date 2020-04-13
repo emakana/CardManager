@@ -1,0 +1,26 @@
+	<ui:composition template="/WEB-INF/templates/layout.xhtml"
+			    xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui">
+		<ui:define name="content">
+			<h1>Login to Card Manager...</h1>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Username :"></h:outputLabel>
+					<h:inputText value="#{userBean.name}">
+						<f:validator
+							validatorId="za.co.cardmanager.validator.LoginValidator" />
+					</h:inputText>
+					<h:outputLabel value="Password :"></h:outputLabel>
+					<h:inputSecret value="#{userBean.password}">
+					</h:inputSecret>
+				</h:panelGrid>
+				<h:commandButton action="#{userBean.login}" value="Login"></h:commandButton>
+				<h:messages layout="table"></h:messages>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+
